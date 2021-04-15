@@ -108,11 +108,11 @@ print(output)
 
 核心是：选择适合自己任务的transformer模型，对输入进行预处理，模型预测，后处理模型预测，输出结果。
 
-# 本项目计划包含的内容
+# 如何使用transformers解决深度学习任务？
+
+## transformer应用-自然语言处理任务
 1. 使用tranformers中的预训练模型直接处理对应的深度学习任务。
 2. 选择一个合适的预训练模型（比如BERT），在自己的数据集上微调预训练模型，获得更好的模型效果。
-
-## 自然语言处理任务
 ### 序列分类（通常是一个句子/文本段落），Sequence Classification
 ### 抽取式问答/机器阅读理解，Extractive Question Answering
 ### 语言模型，包括Masked Language Modeling和Causal Language Modeling
@@ -122,10 +122,12 @@ print(output)
 ### 机器翻译，Translation
 ### 对话系统，Dialogue
 
-## 计算机视觉
-## 语音信号处理
-## 推荐系统
+## transformer应用-计算机视觉
+## transformer应用-语音信号处理
+## transformer应用-推荐系统
 
+# transformers的原理是什么？
+# transformers如何改进？
 # 如何参与进来？
 我们欢迎每一位有志于开源贡献的同学一起来建设transformers中文社区，期望可以帮助到更多的新手快速入门！
 
