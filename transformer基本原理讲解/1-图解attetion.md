@@ -1,5 +1,4 @@
 # 图解Attention
-主要由哈尔滨工业大学张贤同学翻译（经原作者 [@JayAlammmar](https://twitter.com/JayAlammar) 授权）撰写，由本项目同学组织和整理。
 ## seq2seq模型
 序列到序列（seq2seq）模型是一种深度学习模型，在很多任务上都取得了成功，如：机器翻译、文本摘要、图像描述生成。谷歌翻译在 2016 年年末开始使用这种模型。有2篇开创性的论文：[Sutskever等2014年发表的Sequence to Sequence Learning
 with Neural Networks](https://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf)和[Cho等2014年发表的Learning Phrase Representations using RNN Encoder–Decoder
@@ -158,6 +157,8 @@ RNN 在第 2 个时间步，采用第 1 个时间步的 hidden state（隐藏层
 如果你觉得你准备好了学习注意力机制的代码实现，一定要看看基于 TensorFlow 的 神经机器翻译 (seq2seq) [指南](https://github.com/tensorflow/nmt)。
 
 期待您的反馈。
+## 致谢
+主要由哈尔滨工业大学张贤同学翻译（经原作者 [@JayAlammmar](https://twitter.com/JayAlammar) 授权）撰写，由本项目同学组织和整理。
 
 
 
