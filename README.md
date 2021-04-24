@@ -12,7 +12,7 @@ we want to create a repo to illustrate usage of transformers in chinese.
 2. [机器翻译](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/2-translation-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91.ipynb)，Translation
 3. [抽取式问答/机器阅读理解](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/3-question_answering-%E6%9C%BA%E5%99%A8%E9%97%AE%E7%AD%94.ipynb)，Extractive Question Answering
 4. [摘要生成](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/4-summarization-%E6%91%98%E8%A6%81%E7%94%9F%E6%88%90.ipynb) summarization
-5. [token分类](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/5-token_classification-%E8%AF%8D_%E7%AC%A6%E5%8F%B7_token%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1.ipynb)（名词实体识别、词性标注等）
+5. [token分类](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/5-token_classification-%E8%AF%8D_%E7%AC%A6%E5%8F%B7_token%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1.ipynb)（命名实体识别、词性标注等）
 6. 序列分类（通常是一个句子/文本段落），Sequence Classification
 7.  对话系统，Dialogue
 
