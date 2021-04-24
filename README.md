@@ -1,7 +1,7 @@
 # transformers-quick-start-zh
 we want to create a repo to illustrate usage of transformers in chinese.
 # Transformers快速上手
-在本项目中，我们希望能简洁得讲解transformer相关的模型、[HuggingFace/transformers](https://github.com/huggingface/transformers)代码及其在各类深度学习任务中的应用。本项目中的讲解和例子主要基于[HuggingFace/transformers](https://github.com/huggingface/transformers)。
+在本项目中，我们希望能简洁得讲解transformer相关的模型原理和代码例子及其在各类深度学习任务中的应用。目前本项目中的讲解和例子主要基于[HuggingFace/transformers](https://github.com/huggingface/transformers)，由于[HuggingFace/transformers](https://github.com/huggingface/transformers)中计算机视觉的例子较少，后续会进一步扩充其他流行的cv代码库。
 
 # 环境配置
 现在以mac电脑为例，依次执行以下步骤：
@@ -26,8 +26,28 @@ source activate venv/bin/activate：
 ```
 pip install -r requirements.txt
 ```
+# transformers解决哪些深度学习任务？
 
-# Transformer能做什么？
+## transformer应用-自然语言处理任务
+- 使用tranformers中的预训练模型直接处理对应的深度学习任务。
+- 选择一个合适的预训练模型（比如BERT），在自己的数据集上微调预训练模型，获得更好的模型效果。
+1. 语言模型，包括Masked Language Modeling和Causal Language Modeling
+2. 机器翻译，Translation
+3. 抽取式问答/机器阅读理解，Extractive Question Answering
+4. 摘要生成 summarization
+5. token分类（名词实体识别、词性标注等）
+6. 序列分类（通常是一个句子/文本段落），Sequence Classification
+7.  对话系统，Dialogue
+
+## transformer应用-计算机视觉
+## transformer应用-语音信号处理
+## transformer应用-推荐系统
+
+# transformers的原理是什么？
+# transformers如何改进？
+# Transformers具体使用和实践？
+
+
 Transformer是一种神经网络结构，它和CNN（卷积神经网络）和LSTM（长短期记忆神经网络）一样，都能被拿来解决各类深度学习任务。如果初学者不明白CNN和LSTM，则可以将transformer/cnn/lstm想像成一种函数映射关系，这些函数映射能将输入数据映射成我们想要的输出数据（比如将输入的一句话：transformer中文快速上手很棒，映射成输出：0或者1。输出的0或者1分别代表负向情感和正向情感）。
 
 在开始学习transformer之前，我们希望能知道目前的transformer结构及其变体能帮助我们很好的解决哪些深度学习任务？
@@ -107,27 +127,6 @@ print(output)
 使用在transformers代码库处理其他深度学习任务与上面的流程相似。后续章节将分开进行介绍。
 
 核心是：选择适合自己任务的transformer模型，对输入进行预处理，模型预测，后处理模型预测，输出结果。
-
-# 如何使用transformers解决深度学习任务？
-
-## transformer应用-自然语言处理任务
-1. 使用tranformers中的预训练模型直接处理对应的深度学习任务。
-2. 选择一个合适的预训练模型（比如BERT），在自己的数据集上微调预训练模型，获得更好的模型效果。
-### 序列分类（通常是一个句子/文本段落），Sequence Classification
-### 抽取式问答/机器阅读理解，Extractive Question Answering
-### 语言模型，包括Masked Language Modeling和Causal Language Modeling
-### 文本生成，Text Generation
-### 名词实体识别，Named Entity Recognition
-### 摘要抽取，Summarization
-### 机器翻译，Translation
-### 对话系统，Dialogue
-
-## transformer应用-计算机视觉
-## transformer应用-语音信号处理
-## transformer应用-推荐系统
-
-# transformers的原理是什么？
-# transformers如何改进？
 # 如何参与进来？
 我们欢迎每一位有志于开源贡献的同学一起来建设transformers中文社区，期望可以帮助到更多的新手快速入门！
 
