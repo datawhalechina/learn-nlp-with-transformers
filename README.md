@@ -29,6 +29,11 @@ we want to create a repo to illustrate usage of transformers in chinese.
 3. [图解BERT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/3-%E5%9B%BE%E8%A7%A3BERT.md)
 4. [图解GPT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/4-%E5%9B%BE%E8%A7%A3GPT.md)
 
+# transformers如何改进？
+1. 知识蒸馏
+2. 浮点数量化
+3. 长序列transformers
+4. ...
 # 环境配置
 现在以mac电脑为例，依次执行以下步骤：
 
@@ -53,7 +58,6 @@ source activate venv/bin/activate：
 pip install -r requirements.txt
 ```
 
-# transformers如何改进？
 # Transformers具体使用和实践？
 
 
