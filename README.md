@@ -31,19 +31,26 @@ pip install -r requirements.txt
 ## transformer应用-自然语言处理任务
 - 使用tranformers中的预训练模型直接处理对应的深度学习任务。
 - 选择一个合适的预训练模型（比如BERT），在自己的数据集上微调预训练模型，获得更好的模型效果。
-1. 语言模型，包括Masked Language Modeling和Causal Language Modeling
-2. 机器翻译，Translation
-3. 抽取式问答/机器阅读理解，Extractive Question Answering
-4. 摘要生成 summarization
-5. token分类（名词实体识别、词性标注等）
+1. [语言模型](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/1-language_modeling-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B.ipynb) Language Modeling
+2. [机器翻译](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/2-translation-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91.ipynb)，Translation
+3. [抽取式问答/机器阅读理解](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/3-question_answering-%E6%9C%BA%E5%99%A8%E9%97%AE%E7%AD%94.ipynb)，Extractive Question Answering
+4. [摘要生成](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/4-summarization-%E6%91%98%E8%A6%81%E7%94%9F%E6%88%90.ipynb) summarization
+5. [token分类](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/5-token_classification-%E8%AF%8D_%E7%AC%A6%E5%8F%B7_token%E7%BA%A7%E5%88%AB%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1.ipynb)（名词实体识别、词性标注等）
 6. 序列分类（通常是一个句子/文本段落），Sequence Classification
 7.  对话系统，Dialogue
 
 ## transformer应用-计算机视觉
+1. 图像分类
+2. 图像检测
+3. 图像分割
 ## transformer应用-语音信号处理
 ## transformer应用-推荐系统
 
 # transformers的原理是什么？
+1. [图解attention](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/1-%E5%9B%BE%E8%A7%A3attetion.md)
+2. [图解transformer](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/2-%E5%9B%BE%E8%A7%A3transformer.md)
+3. [图解BERT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/3-%E5%9B%BE%E8%A7%A3BERT.md)
+4. [图解GPT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/4-%E5%9B%BE%E8%A7%A3GPT.md)
 # transformers如何改进？
 # Transformers具体使用和实践？
 
