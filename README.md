@@ -3,29 +3,6 @@ we want to create a repo to illustrate usage of transformers in chinese.
 # Transformers快速上手
 在本项目中，我们希望能简洁得讲解transformer相关的模型原理和代码例子及其在各类深度学习任务中的应用。目前本项目中的讲解和例子主要基于[HuggingFace/transformers](https://github.com/huggingface/transformers)，由于[HuggingFace/transformers](https://github.com/huggingface/transformers)中计算机视觉的例子较少，后续会进一步扩充其他流行的cv代码库。
 
-# 环境配置
-现在以mac电脑为例，依次执行以下步骤：
-
-将本项目clone到本地，打开mac/linux的命令行窗口：
-```
-git clone git@github.com:datawhalechina/transformers-quick-start-zh.git
-```
-进入项目文件夹：
-```
-cd transformers-quick-start-zh
-```
-创建属于本项目的python3的环境：
-```
-virtualenv -p python3 venv
-```
-激活本项目的python3环境：
-```
-source activate venv/bin/activate：
-```
-安装python3.6依赖的软件包：
-```
-pip install -r requirements.txt
-```
 # transformers解决哪些深度学习任务？
 
 ## transformer应用-自然语言处理任务
@@ -51,6 +28,31 @@ pip install -r requirements.txt
 2. [图解transformer](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/2-%E5%9B%BE%E8%A7%A3transformer.md)
 3. [图解BERT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/3-%E5%9B%BE%E8%A7%A3BERT.md)
 4. [图解GPT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/4-%E5%9B%BE%E8%A7%A3GPT.md)
+
+# 环境配置
+现在以mac电脑为例，依次执行以下步骤：
+
+将本项目clone到本地，打开mac/linux的命令行窗口：
+```
+git clone git@github.com:datawhalechina/transformers-quick-start-zh.git
+```
+进入项目文件夹：
+```
+cd transformers-quick-start-zh
+```
+创建属于本项目的python3的环境：
+```
+virtualenv -p python3 venv
+```
+激活本项目的python3环境：
+```
+source activate venv/bin/activate：
+```
+安装python3.6依赖的软件包：
+```
+pip install -r requirements.txt
+```
+
 # transformers如何改进？
 # Transformers具体使用和实践？
 
