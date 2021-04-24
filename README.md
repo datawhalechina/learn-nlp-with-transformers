@@ -3,9 +3,9 @@ we want to create a repo to illustrate usage of transformers in chinese.
 # Transformers快速上手
 在本项目中，我们希望能简洁得讲解transformer相关的模型原理和代码例子及其在各类深度学习任务中的应用。目前本项目中的讲解和例子主要基于[HuggingFace/transformers](https://github.com/huggingface/transformers)，由于[HuggingFace/transformers](https://github.com/huggingface/transformers)中计算机视觉的例子较少，后续会进一步扩充其他流行的cv代码库。
 
-# transformers解决哪些深度学习任务？
+## transformers解决哪些深度学习任务？
 
-## transformer应用-自然语言处理任务
+### transformer应用-自然语言处理任务
 - 使用tranformers中的预训练模型直接处理对应的深度学习任务。
 - 选择一个合适的预训练模型（比如BERT），在自己的数据集上微调预训练模型，获得更好的模型效果。
 1. [语言模型](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E4%BB%BB%E5%8A%A1/1-language_modeling-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B.ipynb) Language Modeling
@@ -16,25 +16,25 @@ we want to create a repo to illustrate usage of transformers in chinese.
 6. 序列分类（通常是一个句子/文本段落），Sequence Classification
 7.  对话系统，Dialogue
 
-## transformer应用-计算机视觉
+### transformer应用-计算机视觉
 1. 图像分类
 2. 图像检测
 3. 图像分割
-## transformer应用-语音信号处理
-## transformer应用-推荐系统
+### transformer应用-语音信号处理
+### transformer应用-推荐系统
 
-# transformers的原理是什么？
+## transformers的原理是什么？
 1. [图解attention](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/1-%E5%9B%BE%E8%A7%A3attetion.md)
 2. [图解transformer](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/2-%E5%9B%BE%E8%A7%A3transformer.md)
 3. [图解BERT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/3-%E5%9B%BE%E8%A7%A3BERT.md)
 4. [图解GPT](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/transformer%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/4-%E5%9B%BE%E8%A7%A3GPT.md)
 
-# transformers如何改进？
+## transformers如何改进？
 1. 知识蒸馏
 2. 浮点数量化
 3. 长序列transformers
 4. ...
-# 环境配置
+## 环境配置
 现在以mac电脑为例，依次执行以下步骤：
 
 将本项目clone到本地，打开mac/linux的命令行窗口：
@@ -58,7 +58,7 @@ source activate venv/bin/activate：
 pip install -r requirements.txt
 ```
 
-# Transformers具体使用和实践？
+## Transformers具体使用和实践？
 
 
 Transformer是一种神经网络结构，它和CNN（卷积神经网络）和LSTM（长短期记忆神经网络）一样，都能被拿来解决各类深度学习任务。如果初学者不明白CNN和LSTM，则可以将transformer/cnn/lstm想像成一种函数映射关系，这些函数映射能将输入数据映射成我们想要的输出数据（比如将输入的一句话：transformer中文快速上手很棒，映射成输出：0或者1。输出的0或者1分别代表负向情感和正向情感）。
