@@ -17,7 +17,7 @@ we want to create a repo to illustrate usage of transformers in chinese.
 7.  对话系统，Dialogue
 
 ### transformer应用-计算机视觉
-1. 图像分类
+1. [图像分类](https://github.com/datawhalechina/transformers-quick-start-zh/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1/Vision%20Transformer%E4%BD%BF%E7%94%A8%E5%92%8Cfacebook%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0DINO%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95play.ipynb)
 2. 图像检测
 3. 图像分割
 ### transformer应用-语音信号处理
