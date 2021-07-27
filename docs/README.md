@@ -22,6 +22,7 @@ Natural Language Processing with transformers.
 - hlzhang，麦吉尔大学，篇章4
 
 其他：
+
 本项目总结和学习了多篇优秀文档和分享，在各个章节均有标注来源，如有侵权，请及时联系项目成员，谢谢。
 
 # 项目内容
