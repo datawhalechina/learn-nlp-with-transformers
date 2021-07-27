@@ -7,6 +7,7 @@ Natural Language Processing with transformers.
 - 了解和知道简单的深度学习模型
 
 本项目的愿景是：
+
 希望结合形象生动的原理讲解和多个动手实践项目，帮助初学者快速入门深度学习时代的NLP。
 
 本项目的主要参考资料是：
