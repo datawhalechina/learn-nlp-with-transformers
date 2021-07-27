@@ -1,0 +1,5 @@
+## 篇章小测
+* 问题1: NLP生成任务用什么预训练模型效果更好，BERT、Roberta，GPT，T5？
+* 问题2: 多选问答如何构建输入？
+* 问题3: 抽取式问答如何解决超长的文本context？
+* 问题4: 如何选择tokenizer和pre-trained模型？
