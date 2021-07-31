@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+# 基于transformers的自然语言处理(NLP)入门
+Natural Language Processing with transformers.
+本项目面向的对象是：
+- NLP初学者、transformer初学者
+- 有一定的python、pytorch编程基础
+- 对前沿的transformer模型感兴趣
+- 了解和知道简单的深度学习模型
 
-You can use the [editor on GitHub](https://github.com/datawhalechina/learn-nlp-with-transformers/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+本项目的愿景是：
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+希望结合形象生动的原理讲解和多个动手实践项目，帮助初学者快速入门深度学习时代的NLP。
 
-### Markdown
+本项目的主要参考资料是：
+- Huggingface/Transformers代码库
+- 多个优秀的Transformer讲解和分享
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+项目成员：
+- erenup（多多笔记），北京大学，负责人
+- 张帆，Datawhale，天津大学，篇章4
+- 张贤，哈尔滨工业大学，篇章2
+- 李泺秋，浙江大学，篇章3
+- 蔡杰，北京大学，篇章4
+- hlzhang，麦吉尔大学，篇章4
 
-```markdown
-Syntax highlighted code block
+其他：
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/datawhalechina/learn-nlp-with-transformers/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+本项目总结和学习了多篇优秀文档和分享，在各个章节均有标注来源，如有侵权，请及时联系项目成员，谢谢。
