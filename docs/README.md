@@ -15,7 +15,7 @@ Natural Language Processing with transformers.
 - 多个优秀的Transformer讲解和分享
 
 项目成员：
-- erenup（多多笔记），北京大学，负责人
+- erenup([多多笔记](https://www.zhihu.com/people/nai-ping-46-76))，北京大学，负责人
 - 张帆，Datawhale，天津大学，篇章4
 - 张贤，哈尔滨工业大学，篇章2
 - 李泺秋，浙江大学，篇章3
