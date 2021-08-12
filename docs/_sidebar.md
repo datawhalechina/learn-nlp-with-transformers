@@ -1,4 +1,6 @@
-[篇章1-Transformers在NLP中的兴起](./篇章1-Transformers在NLP中的兴起/1.1-Transformers在NLP中的兴起.md)
+篇章1-前言
+* [1.0-本地阅读和代码运行环境配置.md](./篇章1-前言/1.0-本地阅读和代码运行环境配置.md)
+* [1.1-Transformers在NLP中的兴起](./篇章1-前言/1.1-Transformers在NLP中的兴起.md)
 
 [篇章2-Transformer相关原理](./篇章2-Transformer相关原理/2.0-前言.md)
 * [2.1-图解attention](./篇章2-Transformer相关原理/2.1-图解attention.md)

@@ -1,0 +1,3 @@
+transformers==4.4.2
+datasets==1.6.2
+notebook
