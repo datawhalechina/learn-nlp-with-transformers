@@ -2,3 +2,5 @@
 *.DS_Store*
 nbconvert*
 *csv
+*cache
+*lock
