@@ -5,6 +5,7 @@
 [篇章2-Transformer相关原理](./篇章2-Transformer相关原理/2.0-前言.md)
 * [2.1-图解attention](./篇章2-Transformer相关原理/2.1-图解attention.md)
 * [2.2-图解transformer](./篇章2-Transformer相关原理/2.2-图解transformer.md)
+* [2.2.1-Pytorch编写完整的Transformer](./篇章2-Transformer相关原理/2.2.1-Pytorch编写完整的Transformer.md)
 * [2.3-图解BERT](./篇章2-Transformer相关原理/2.3-图解BERT.md)
 * [2.4-图解GPT](./篇章2-Transformer相关原理/2.4-图解GPT.md)
 * [2.5-篇章小测](./篇章2-Transformer相关原理/2.5-篇章小测.md)

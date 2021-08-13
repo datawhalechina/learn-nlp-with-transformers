@@ -21,7 +21,7 @@ Natural Language Processing with transformers.
 - 李泺秋，浙江大学，篇章3
 - 蔡杰，北京大学，篇章4
 - hlzhang，麦吉尔大学，篇章4
-- 台运鹏
+- 台运鹏 篇章2
 
 其他：
 
@@ -35,6 +35,7 @@ Natural Language Processing with transformers.
 ## 篇章2-Transformer相关原理
 * [2.1-图解attention](./篇章2-Transformer相关原理/2.1-图解attention.md)
 * [2.2-图解transformer](./篇章2-Transformer相关原理/2.2-图解transformer.md)
+* [2.2.1-Pytorch编写完整的Transformer](./篇章2-Transformer相关原理/2.2.1-Pytorch编写完整的Transformer.md)
 * [2.3-图解BERT](./篇章2-Transformer相关原理/2.3-图解BERT.md)
 * [2.4-图解GPT](./篇章2-Transformer相关原理/2.4-图解GPT.md)
 * [2.5-篇章小测](./篇章2-Transformer相关原理/2.5-篇章小测.md)
