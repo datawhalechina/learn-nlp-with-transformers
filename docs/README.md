@@ -16,7 +16,7 @@ Natural Language Processing with transformers.
 
 项目成员：
 - erenup([多多笔记](https://www.zhihu.com/people/nai-ping-46-76))，北京大学，负责人
-- 张帆，Datawhale，天津大学，篇章4
+- [张帆](https://github.com/zhangfanTJU)，Datawhale，天津大学，篇章4
 - 张贤，哈尔滨工业大学，篇章2
 - 李泺秋，浙江大学，篇章3
 - 蔡杰，北京大学，篇章4
@@ -46,7 +46,7 @@ Natural Language Processing with transformers.
 * [3.3-篇章小测](./篇章3-编写一个Transformer模型：BERT/3.3-篇章小测.md)
 
 ## 篇章4-使用Transformers解决NLP任务
-* [4.0-前言](./篇章4-使用Transformers解决NLP任务/4.0-前言)
+* [4.0-前言](./篇章4-使用Transformers解决NLP任务/4.0-前言.md)
 * [4.1-文本分类](./篇章4-使用Transformers解决NLP任务/4.1-文本分类.md)
 * [4.2-序列标注](./篇章4-使用Transformers解决NLP任务/4.2-序列标注.md)
 * [4.3-问答任务-抽取式问答](./篇章4-使用Transformers解决NLP任务/4.3-问答任务-抽取式问答.md)
