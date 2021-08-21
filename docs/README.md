@@ -23,7 +23,7 @@ Natural Language Processing with transformers.
 - hlzhang，麦吉尔大学，篇章4
 - 台运鹏 篇章2
 
-其他：
+Tips：（我是在学Github操作，试一下pr，忽略就好）
 
 本项目总结和学习了多篇优秀文档和分享，在各个章节均有标注来源，如有侵权，请及时联系项目成员，谢谢。去[Github点完Star](https://github.com/datawhalechina/learn-nlp-with-transformers)再学习事半功倍哦😄，谢谢。
 
