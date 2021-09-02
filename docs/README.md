@@ -22,8 +22,7 @@ Natural Language Processing with transformers.
 - 蔡杰，北京大学，篇章4
 - hlzhang，麦吉尔大学，篇章4
 - 台运鹏 篇章2
-
-其他：
+- 张红旭 篇章2
 
 本项目总结和学习了多篇优秀文档和分享，在各个章节均有标注来源，如有侵权，请及时联系项目成员，谢谢。去[Github点完Star](https://github.com/datawhalechina/learn-nlp-with-transformers)再学习事半功倍哦😄，谢谢。
 
@@ -35,7 +34,8 @@ Natural Language Processing with transformers.
 ## 篇章2-Transformer相关原理
 * [2.1-图解attention](./篇章2-Transformer相关原理/2.1-图解attention.md)
 * [2.2-图解transformer](./篇章2-Transformer相关原理/2.2-图解transformer.md)
-* [2.2.1-Pytorch编写完整的Transformer](./篇章2-Transformer相关原理/2.2.1-Pytorch编写完整的Transformer.md)
+* [2.2.1-Pytorch编写Transformer.md](./篇章2-Transformer相关原理/2.2.1-Pytorch编写Transformer.md)
+* [2.2.2-Pytorch编写Transformer-选读.md](./篇章2-Transformer相关原理/2.2.1-Pytorch编写Transformer-选读.md)
 * [2.3-图解BERT](./篇章2-Transformer相关原理/2.3-图解BERT.md)
 * [2.4-图解GPT](./篇章2-Transformer相关原理/2.4-图解GPT.md)
 * [2.5-篇章小测](./篇章2-Transformer相关原理/2.5-篇章小测.md)
