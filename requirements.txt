@@ -4,3 +4,7 @@ notebook
 torch==1.9.0
 sklearn
 scipy
+matplotlib
+torchtext
+seaborn
+spacy
