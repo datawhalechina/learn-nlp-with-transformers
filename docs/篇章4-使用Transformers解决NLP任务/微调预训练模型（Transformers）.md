@@ -640,8 +640,10 @@ Trainer 默认支持 多GPU/TPU，也支持混合精度训练，可以在训练�
 - 微调（根据下游任务简单训练几个epoch，调整预训练模型权重）
 
 某个人说的是：就像BERT论文第五部分（实验）写的，虽然BERT做NLP任务有两种方法，但是不建议不训练模型，就直接输出结果来预测。而且Hugging Face的作者就推荐大家使用Trainer来训练模型。
-实际中，微调的效果也会明显好于特征提取（除非头铁，特征提取后面接一个很复杂的模型）。<br>
+实际中，微调的效果也会明显好于特征提取（除非头铁，特征提取后面接一个很复杂的模型）。
+
 至于为什么用Trainer，之前已经说了。Trainer是专门为Transformers写的一个PyTorch 训练和评估循环，否则就要自定义训练循环。
+
 这一小段是我的理解，不在HF主页课程中。
 
 ### args主要参数
@@ -652,7 +654,7 @@ TrainingArguments参数有几十个，后面章节用到的主要有：
   - “step”：每个 eval_steps 完成（并记录）评估
   - “epoch”：在每个 epoch 结束时进行评估。
 - learning_rate (float, 可选) – AdamW 优化器学习率，defaults to 5e-5
-- weight_decay (float, 可选，默认 0) ：如果不是，就是应用于所有层的权重衰减，除了 AdamW 优化器中的所有偏差和 LayerNorm 权重。关于.weight decay可参考[知乎文章](https://zhuanlan.zhihu.com/p/63982470)
+- weight_decay (float, 可选，默认 0) ：如果不是0，就是应用于所有层的权重衰减，除了 AdamW 优化器中的所有偏差和 LayerNorm 权重。关于weight decay可参考[知乎文章](https://zhuanlan.zhihu.com/p/63982470)。
 - save_strategy (str 或 IntervalStrategy, 可选, 默认为 "steps") ：在训练期间采用的检查点保存策略。可能的值为：
   - “no”：训练期间不保存
   - “epoch”：在每个epoch结束时进行保存
