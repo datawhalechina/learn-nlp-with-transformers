@@ -423,8 +423,25 @@ DatasetDict({
 >如果您没有使用由该库支持的fast tokenizer，Dataset.map函数进行预处理时可以设定num_proc 参数来进行多线程处理，加快预处理速度。
 
 最后，当我们将输入序列进行批处理时，要将所有输入序列填充到本批次最长序列的长度——我们称之为动态填充技术dynamic padding(动态填充：即将每个批次的输入序列填充到一样的长度。具体内容放在最后）。
-###  使用Trainer API微调模型
-🤗 Transformers 提供了一个 Trainer 类，可以用来在你的数据集上微调任何预训练模型。 数据预处理后，只需要再执行几个步骤来定义 Trainer，就可以使用 Trainer 进行模型的训练了。 最困难的部分可能是准备运行 Trainer.train 的环境，因为它在 CPU 上运行速度非常慢。（ 如果您没有设置 GPU，则可以在 Google Colab 上访问免费的 GPU 或 TPU）
+###  使用 Trainer API 在 PyTorch 中进行微调
+由于 PyTorch 不提供封装好的训练循环，🤗 Transformers 库提供了一个transformers.Trainer API，它是一个简单但功能完整的 PyTorch 训练和评估循环，针对 🤗 Transformers 进行了优化，有很多的训练选项和内置功能，同时也支持多GPU/TPU分布式训练和混合精度。即Trainer API是一个封装好的训练器（Transformers库内置的小框架，如果是Tensorflow，则是TFTrainer）。
+
+数据预处理完成后，只需要几个简单的步骤来定义Trainer的参数，就可以使用 Trainer 进行模型的基本训练循环了（否则的话，要自己从头加载和预处理数据，设置各种参数，一步步编写训练循环。自定义训练循环的内容在本节最后）。 
+
+Trainer最困难的部分可能是准备运行 Trainer.train 的环境，因为它在 CPU 上运行速度非常慢。（ 如果您没有设置 GPU，则可以在 Google Colab 上访问免费的 GPU 或 TPU）
+
+trainer主要参数包括：
+- Model：用于训练、评估或用于预测的模型
+- args (TrainingArguments）：训练调整的参数。如果未提供，将默认为 TrainingArguments 的基本实例
+- data_collator（DataCollator，可选）– 用于批处理train_dataset 或 eval_dataset 的的函数
+- train_dataset：训练集
+- eval_dataset：验证集
+- compute_metrics：用于计算评估指标的函数。必须传入EvalPrediction 并将返回一个字典，键值对是metric和其value。
+- callbacks （回调函数，可选）：用于自定义训练循环的回调列表（List of TrainerCallback）
+- optimizers：一个包含优化器和学习率调整器的元组，默认优化器是AdamW，默认的学习率是线性的学习率，从5e-5 到 0
+
+
+除了以上主要参数还有一些参数和属性（得有几十个吧，可以慢慢看。完整的Trainer文档可以参考[这里](https://huggingface.co/transformers/main_classes/trainer.html?highlight=trainer#transformers.Trainer)）
 
 下面的代码示例假定您已经执行了上一节中的示例：
 
@@ -442,8 +459,9 @@ def tokenize_function(example):
 tokenized_datasets = raw_datasets.map(tokenize_function, batched=True)
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)#动态填充，即将每个批次的输入序列填充到一样的长度
 ```
+
 #### 训练
-Trainer 第一个参数是TrainingArguments 类，包含 Trainer 用于训练和评估的所有超参数。 唯一一个必须提供的参数是：保存model和checkpoint的目录（The only argument you have to provide is a directory where the trained model will be saved, as well as the checkpoints along the way）。 其它参数可以选取默认值。
+Trainer 第一个参数是TrainingArguments类，是一个与训练循环本身相关的参数的子集，包含 Trainer中用于训练和评估的所有超参数。 唯一一个必须提供的参数是：保存model或者说是checkpoint的目录，其它参数可以选取默认值（比如默认训练3个epoch等）（TrainingArguments也有几十个参数，，常见参数写在文末，完整文档包含在上面说的Trainer文档里）
 
 ```python
 from transformers import TrainingArguments
@@ -558,7 +576,7 @@ metric.compute(predictions=preds, references=predictions.label_ids)
 ```python
 {'accuracy': 0.8578431372549019, 'f1': 0.8996539792387542}#模型在验证集上的准确率为 85.78%，F1 分数为 89.97
 ```
-每次训练时model head的随机初始化可能会改变最终的metric值，所以这里的最终结果可能和你跑出的不一样。 acc和F1 是用于评估 GLUE 基准的 MRPC 数据集结果的两个指标。 BERT 论文中的表格报告了基本模型的 F1 分数为 88.9。 那是un-cased模型，而我们目前使用的是cased模型，这说明了更好的结果。(<u>cased就是指区分英文的大小写）
+每次训练时model head的随机初始化可能会改变最终的metric值，所以这里的最终结果可能和你跑出的不一样。 acc和F1 是用于评估 GLUE 基准的 MRPC 数据集结果的两个指标。 BERT 论文中的表格报告了基本模型的 F1 分数为 88.9。 那是un-cased模型，而我们目前使用的是cased模型，这说明了更好的结果。(cased就是指区分英文的大小写）
 
 将以上内容整合到一起，得到 compute_metrics 函数：
 
@@ -610,16 +628,41 @@ TrainOutput(global_step=1377, training_loss=0.37862846690325436, metrics={'train
 ```
 这次，模型训练时会在training loss之外，还报告每个 epoch 结束时的 validation loss和metrics。 同样，由于模型的随机头部(task head)初始化，您达到的准确准确率/F1 分数可能与我们发现的略有不同，但它应该在同一范围内。
   
+Trainer 默认支持 多GPU/TPU，也支持混合精度训练，可以在训练的配置 TrainingArguments 中，设置 fp16 = True。
+  
 使用Trainer 很方便，但是高级的封装API也会有其弊端，就是无法进行很多自定义的操作。所以我们可以采用常规的 pytorch 的训练方法，自定义训练循环。还可以选择使用Accelerate库进行分布式训练（之前的例子都是使用单个GPU/CPU）。这部分内容不做要求，感兴趣的可以查看原文[《A full training》](https://huggingface.co/course/chapter3/4?fw=pt)，或者翻译[《微调预训练模型》](https://blog.csdn.net/qq_56591814/article/details/120147114)。
   
 ## 5. 补充部分
-为什么教程第四章都是用Trainer来微调模型？预训练模型有两种用法：
+### 为什么教程第四章都是用Trainer来微调模型？
+
+预训练模型有两种用法：
 - 特征提取（预训练模型不做后续训练，不调整权重）
 - 微调（根据下游任务简单训练几个epoch，调整预训练模型权重）
 
 某个人说的是：就像BERT论文第五部分（实验）写的，虽然BERT做NLP任务有两种方法，但是不建议不训练模型，就直接输出结果来预测。而且Hugging Face的作者就推荐大家使用Trainer来训练模型。
 实际中，微调的效果也会明显好于特征提取（除非头铁，特征提取后面接一个很复杂的模型）。<br>
+至于为什么用Trainer，之前已经说了。Trainer是专门为Transformers写的一个PyTorch 训练和评估循环，否则就要自定义训练循环。
 这一小段是我的理解，不在HF主页课程中。
+
+### args主要参数
+TrainingArguments参数有几十个，后面章节用到的主要有：
+- output_dir (str) ：model predictions和检查点的保存目录。保存后的模型可以使用管道加载，在下次预测时使用，详见[《使用huggingface transformers全家桶实现一条龙BERT训练和预测》](https://zhuanlan.zhihu.com/p/344767513?utm_source=wechat_session&utm_medium=social&utm_oi=1400823417357139968&utm_campaign=shareopn)
+- evaluation_strategy ：有三个选项
+  - "no"：训练时不做任何评估
+  - “step”：每个 eval_steps 完成（并记录）评估
+  - “epoch”：在每个 epoch 结束时进行评估。
+- learning_rate (float, 可选) – AdamW 优化器学习率，defaults to 5e-5
+- weight_decay (float, 可选，默认 0) ：如果不是，就是应用于所有层的权重衰减，除了 AdamW 优化器中的所有偏差和 LayerNorm 权重。关于.weight decay可参考[知乎文章](https://zhuanlan.zhihu.com/p/63982470)
+- save_strategy (str 或 IntervalStrategy, 可选, 默认为 "steps") ：在训练期间采用的检查点保存策略。可能的值为：
+  - “no”：训练期间不保存
+  - “epoch”：在每个epoch结束时进行保存
+  - “steps”：每个step保存一次。
+- fp16 (bool, 可选, 默认False) –是否使用 16 位（混合）精度训练而不是 32 位训练。
+- metric_for_best_model (str, 可选) ：与 load_best_model_at_end 结合使用以指定用于比较两个不同模型的metric 。必须是评估返回的metric 的名称，带或不带前缀“eval_”。
+- num_train_epochs (float, 可选，默认是3) – 要训练的epoch数
+- load_best_model_at_end (bool, 可选, 默认为 False) ：是否在训练结束时加载训练过程中找到的最佳模型。
+
+
 ### 不同的模型加载方式
 AutoModel 类及其所有相关类实际上是库中各种可用模型的简单包装器。 它可以自动为您的checkpoint猜测合适的模型架构，然后使用该架构实例化模型。
 
