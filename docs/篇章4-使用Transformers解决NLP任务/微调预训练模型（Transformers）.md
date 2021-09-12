@@ -273,11 +273,11 @@ model.config.id2label
 >本节代码：[Open in Colab](https://colab.research.google.com/github/huggingface/notebooks/blob/master/course/chapter3/section3.ipynb)（PyTorch），建议点此进行测试。colab上加载数据集非常快，设置GPU后训练也比较快。
 >打开后选择左上方“修改”选项卡，点击笔记本设置-硬件加速器None改成GPU就行。
 
-在第2节中，我们探讨了如何使用分词器和预训练模型进行预测。 但是，如果您想为自己的数据集微调预训练模型怎么办？ 这就是本章的主题！ 你将学习：
+在第3节中，我们探讨了如何使用分词器和预训练模型进行预测。 但是，如果您想为自己的数据集微调预训练模型怎么办？ 这就是本章的主题！ 你将学习：
 
 - 如何从Model Hub 准备大型数据集
 - 如何使用high-level Trainer API来微调模型
-- 如何使用自定义训练循环custom training loop
+- 如何使用自定义训练循环a custom training loop
 - 如何利用 🤗 Accelerate 库在任何分布式设置上轻松运行该custom training loop
 ### 从Hub上下载dataset
 >Youtube 视频：[Hugging Face Datasets Overview](https://youtu.be/_BZearw7f0w)（pytorch）
@@ -312,6 +312,13 @@ DatasetDict({
 })
 ```
 这样就得到一个DatasetDict对象，包含训练集、验证集和测试集，训练集中有3,668 个句子对，验证集中有408对，测试集中有1,725 对。每个句子对包含四列数据：'sentence1', 'sentence2', 'label'和 'idx'。
+
+load_dataset 方法, 可以从不同的地方构建数据集<br>
+- from the HuggingFace Hub,
+- from local files, 如CSV/JSON/text/pandas files
+- from in-memory data like python dict or a pandas dataframe.
+
+例如： datasets = load_dataset("text", data_files={"train": path_to_train.txt, "validation": path_to_validation.txt} 具体可以[参考文档](https://link.zhihu.com/?target=https%3A//huggingface.co/docs/datasets/loading_datasets.html%23from-local-files)
 
 load_dataset命令下载并缓存数据集，默认在 ~/.cache/huggingface/dataset 中。您可以通过设置 HF_HOME 环境变量来自定义缓存文件夹。
 
@@ -378,15 +385,15 @@ tokenized_dataset = tokenizer(
     truncation=True,
 )
 ```
-这种方法缺点是返回字典（带有我们的键:input_ids、attention_mask 和 token_type_ids，对应的键值对的值）。 tokenization期间有足够的内存来存储整个数据集时这种方法才有效（ 🤗 Datasets 库中的数据集是存储在磁盘上的 Apache Arrow 文件，因此请求加载的样本都保存在内存中）。
+这种处理方法是ok的，但缺点是处理之后tokenized_dataset不再是一个dataset格式，而是返回字典（带有我们的键:input_ids、attention_mask 和 token_type_ids，对应的键值对的值）。 而且一旦我们的dataset过大，无法放在内存中，那么这样子的做法会导致 Out of Memory 的异常。（ 🤗 Datasets 库中的数据集是存储在磁盘上的 Apache Arrow 文件，因此请求加载的样本都保存在内存中）。
 
-To keep the data as a dataset，我们将使用更灵活的Dataset.map 方法。此方法可以完成更多的预处理而不仅仅是 tokenization。 map 方法是对数据集中的每个元素应用同一个函数，所以让我们定义一个函数来对输入进行tokenize预处理：
+为了使我们的数据保持dataset的格式，我们将使用更灵活的Dataset.map 方法。此方法可以完成更多的预处理而不仅仅是 tokenization。 map 方法是对数据集中的每个元素应用同一个函数，所以让我们定义一个函数来对输入进行tokenize预处理：
 
 ```python
 def tokenize_function(example):
     return tokenizer(example["sentence1"], example["sentence2"], truncation=True)
 ```
-这个函数接受的是一个字典example（就像我们dataset的items），返回的也是一个字典（有三个键：input_ids、attention_mask 和 token_type_ids ）。 
+这个函数接受的是一个字典（就像我们dataset的items），返回的也是一个字典（有三个键：input_ids、attention_mask 和 token_type_ids ）。 
 
 在tokenization函数中省略了padding 参数，这是因为padding到该批次中的最大长度时的效率，会高于所有序列都padding到整个数据集的最大序列长度。 当输入序列长度很不一致时，这可以节省大量时间和处理能力！
 
@@ -417,7 +424,7 @@ DatasetDict({
 
 最后，当我们将输入序列进行批处理时，要将所有输入序列填充到本批次最长序列的长度——我们称之为动态填充技术dynamic padding(动态填充：即将每个批次的输入序列填充到一样的长度。具体内容放在最后）。
 ###  使用Trainer API微调模型
-🤗 Transformers 提供了一个 Trainer 类，可以用来在你的数据集上微调任何预训练模型。 数据预处理后，只需要再执行几个步骤来定义 Trainer。 最困难的部分可能是准备运行 Trainer.train 的环境，因为它在 CPU 上运行速度非常慢。（ 如果您没有设置 GPU，则可以在 Google Colab 上访问免费的 GPU 或 TPU）
+🤗 Transformers 提供了一个 Trainer 类，可以用来在你的数据集上微调任何预训练模型。 数据预处理后，只需要再执行几个步骤来定义 Trainer，就可以使用 Trainer 进行模型的训练了。 最困难的部分可能是准备运行 Trainer.train 的环境，因为它在 CPU 上运行速度非常慢。（ 如果您没有设置 GPU，则可以在 Google Colab 上访问免费的 GPU 或 TPU）
 
 下面的代码示例假定您已经执行了上一节中的示例：
 
@@ -451,9 +458,9 @@ from transformers import AutoModelForSequenceClassification
 
 model = AutoModelForSequenceClassification.from_pretrained(checkpoint, num_labels=2)#标签数为2也就是二分类
 ```
-在实例化此预训练模型后会收到警告。 这是因为 BERT 没有在句子对分类方面进行过预训练，所以预训练模型的head已经被丢弃，而是添加了一个适合序列分类的new head。 警告表明一些权重没有使用（对应于丢弃的预训练head部分），而其他一些权重被随机初始化（new head部分）， 最后鼓励您训练模型。
+在实例化此预训练模型后会报一个warning。 这是因为 BERT 没有在句子对分类方面进行过预训练，所以预训练模型的head已经被丢弃，而是添加了一个适合序列分类的new head。 警告表明一些权重没有使用（对应于丢弃的预训练head部分），而其他一些权重被随机初始化（new head部分）， 最后鼓励您训练模型。
 
-有了模型之后，就可以定义一个训练器Trainer，将迄今为止构建的所有对象传递给它。这些对象包括：model、training_args、训练和验证数据集、data_collator 和tokenizer。（这都是Trainer的参数）：
+有了模型之后，就可以定义一个训练器Trainer，将迄今为止构建的所有对象传递给它进行模型精调。这些对象包括：model、training_args、训练和验证数据集、data_collator 和tokenizer。（这都是Trainer的参数）：
 
 ```python
 from transformers import Trainer
@@ -513,7 +520,10 @@ print(predictions.predictions.shape, predictions.label_ids.shape)
 ```python
 (408, 2) (408,)
 ```
-predict 方法输出一个具有三个字段的元组，三个字段分别是predictions、label_ids 和 metrics(见下图)。 metrics字段将只包含数据集传递的损失，以及一些time metrics （预测所需的总时间和平均时间）。
+predict 方法输出一个具有三个字段的元组。
+- predictions： 预测值，形状为:[batch_size, num_labels], 是logits 而不是经过softmax之后的结果
+- label_ids：真实的的label id
+- metrics：评价指标，默认是training loss，以及一些time metrics （预测所需的总时间和平均时间）。但是一旦我们传入了 compute_metrics 函数给 Trainer，那么该函数的返回值也会一并输出
 
 ![mrpc](https://img-blog.csdnimg.cn/7a920b0dddf147cf87b38fb18a0ad0a8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA56We5rSb5Y2O,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 ```python
@@ -528,10 +538,11 @@ preds = np.argmax(predictions.predictions, axis=-1)
 1. 没有设置evaluation_strategy 参数，告诉模型多少个“steps”（eval_steps）或“epoch”来评估一次损失。
 2. Trainer的compute_metrics 可以计算训练时具体的评估指标的值（比如acc、F1分数等等）。不设置compute_metrics 就只显示training loss，这不是一个直观的数字。
 
-而如果我们将compute_metrics 函数写好并将其传递给Trainer后，该字段也将包含compute_metrics 返回的metrics值。（Once we complete our compute_metrics function and pass it to the Trainer, that field will also contain the metrics returned by compute_metrics.）
+而如果我们将compute_metrics 函数写好并将其传递给Trainer后，metrics字段也将包含compute_metrics 返回的metrics值。
 #### 评估函数
-compute_metrics 函数必须传入一个 EvalPrediction 对象作为参数。 EvalPrediction是一个具有预测字段和 label_ids 字段的元组。
-compute_metrics返回的结果是字典，键值对类型分别是strings和floats（strings是metrics的名称，floats是具体的值）。
+现在看看如何构造compute_metrics 函数。这个函数：
+- 必须传入 EvalPrediction 参数。 EvalPrediction是一个具有 predictions字段和 label_ids 字段的元组。
+- 返回一个字典，键值对是key：metric 名字（string类型），value：metric 值（float类型）。
 
 ***也就是[教程4.1](https://datawhalechina.github.io/learn-nlp-with-transformers/#/./%E7%AF%87%E7%AB%A04-%E4%BD%BF%E7%94%A8Transformers%E8%A7%A3%E5%86%B3NLP%E4%BB%BB%E5%8A%A1/4.1-%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB)说的：直接调用metric的compute方法，传入labels和predictions即可得到metric的值。也只有这样做才能在训练时得到acc、F1等结果（具体指标根据不同任务来定）***
 
@@ -598,6 +609,9 @@ Epoch	Training Loss	Validation Loss	 Accuracy	   F1
 TrainOutput(global_step=1377, training_loss=0.37862846690325436, metrics={'train_runtime': 393.5652, 'train_samples_per_second': 27.96, 'train_steps_per_second': 3.499, 'total_flos': 405470580750720.0, 'train_loss': 0.37862846690325436, 'epoch': 3.0})
 ```
 这次，模型训练时会在training loss之外，还报告每个 epoch 结束时的 validation loss和metrics。 同样，由于模型的随机头部(task head)初始化，您达到的准确准确率/F1 分数可能与我们发现的略有不同，但它应该在同一范围内。
+  
+使用Trainer 很方便，但是高级的封装API也会有其弊端，就是无法进行很多自定义的操作。所以我们可以采用常规的 pytorch 的训练方法，自定义训练循环。还可以选择使用Accelerate库进行分布式训练（之前的例子都是使用单个GPU/CPU）。这部分内容不做要求，感兴趣的可以查看原文[《A full training》](https://huggingface.co/course/chapter3/4?fw=pt)，或者翻译[《微调预训练模型》](https://blog.csdn.net/qq_56591814/article/details/120147114)。
+  
 ## 5. 补充部分
 为什么教程第四章都是用Trainer来微调模型？预训练模型有两种用法：
 - 特征提取（预训练模型不做后续训练，不调整权重）
@@ -648,7 +662,7 @@ model = BertModel(config)
 
 # 模型已经随机初始化了
 ```
-模型可以在这种状态下使用，但是会输出乱码； 它需要先训练。 我们可以根据手头的任务从头开始训练模型，这将需要很长时间和大量数据，并且会对环境产生不可忽视的影响。 为了避免不必要和重复的工作，必须能够共享和重用已经训练过的模型。
+模型可以在这种状态下使用，但是会输出乱码； 它需要先训练。 我们可以根据手头的任务从头开始训练模型，这将需要很长时间和大量数据。
 
 使用 from_pretrained 方法来加载一个已经训练过的 Transformer 模型：
 ```python
@@ -670,19 +684,18 @@ model = BertModel.from_pretrained("bert-base-cased")
 ### Dynamic padding——动态填充技术
 >youtube视频：[《what is Dynamic padding》](https://youtu.be/7q5NyFT8REg)
     
-
-在 PyTorch 中，DataLoader有一个参数——collate function。它负责将一批样本放在一起，默认是一个函数，所以叫整理函数。它将您的样本转换为 PyTorch 张量进行连接（如果您的元素是列表、元组或字典，则递归）。
+在 PyTorch 中，DataLoader有一个参数——collate 函数。它负责将一批样本放在一起，默认是一个函数，所以叫整理函数。它将您的样本转换为 PyTorch 张量进行连接（如果您的元素是列表、元组或字典，则递归）。
 
 由于我们所拥有的输入序列长度不同，所以需要对输入序列进行填充（作为模型的输入，同批次的各张量必须是同一长度）。前面说过，padding到该批次中的最大长度时的效率，会高于所有序列都padding到整个数据集的最大序列长度。
-
-为了在实践中做到这一点，我们必须定义一个 collat​​e 函数，它将对批处理数据应用正确的填充数量。🤗 Transformers 库通过 DataCollat​​orWithPadding 为我们提供了这样的功能。当您实例化它时，它需要一个tokenizer（以了解要使用哪个填充标记，以及模型希望填充在输入的左侧还是右侧），并且会执行您需要的所有操作：
+注意：如果使用TPU，则还是需要padding 到模型的 max length，因为TPU这样子效率更高。
+为了在实践中做到这一点，我们必须定义一个 collate 函数，它将对批处理数据应用正确的填充数量。（对于不同的batch 数据，进行不同长度的padding。）🤗 Transformers 库通过 DataCollatorWithPadding 为我们提供了这样的功能。当您实例化它时，它需要一个tokenizer（以了解要使用哪个填充token，以及模型希望填充在输入的左侧还是右侧），并且会执行您需要的所有操作：
 
 ```python
 from transformers import DataCollatorWithPadding
 
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 ```
-为了测试这个小功能，从训练集中选取我们想要一起批处理的样本。这里需要删除 idx、sentence1 和 sentence2 列，因为不需要这些列并且它们包含字符串（不能创建张量）。查看批处理中每个输入的长度：
+为了测试，我们从训练集中选取我们想要一起批处理的样本。这里需要删除 idx、sentence1 和 sentence2 列，因为不需要这些列并且它们包含字符串（不能创建张量）。查看批处理中每个输入的长度：
 
 ```python
 samples = tokenized_datasets["train"][:8]
