@@ -11,12 +11,13 @@
 * [2.4-图解GPT](./篇章2-Transformer相关原理/2.4-图解GPT.md)
 * [2.5-篇章小测](./篇章2-Transformer相关原理/2.5-篇章小测.md)
 
-篇章3-编写一个Transformer模型：BERT
+[篇章3-编写一个Transformer模型：BERT](./篇章3-编写一个Transformer模型：BERT/3.0-前言.md)
 * [3.1-如何实现一个BERT](./篇章3-编写一个Transformer模型：BERT/3.1-如何实现一个BERT.md)
 * [3.2-如何应用一个BERT](./篇章3-编写一个Transformer模型：BERT/3.2-如何应用一个BERT.md)
 * [3.3-篇章小测](./篇章3-编写一个Transformer模型：BERT/3.3-篇章小测.md)
 
-[篇章4-使用Transformers解决NLP任务](./篇章4-使用Transformers解决NLP任务/4.0-前言)
+[篇章4-使用Transformers解决NLP任务](./篇章4-使用Transformers解决NLP任务/4.0-前言.md)
+* [4.0-基于Hugging Face -Transformers的预训练模型微调.md](./篇章4-使用Transformers解决NLP任务/4.0-基于HuggingFace-Transformers的预训练模型微调.md)
 * [4.1-文本分类](./篇章4-使用Transformers解决NLP任务/4.1-文本分类.md)
 * [4.2-序列标注](./篇章4-使用Transformers解决NLP任务/4.2-序列标注.md)
 * [4.3-问答任务-抽取式问答](./篇章4-使用Transformers解决NLP任务/4.3-问答任务-抽取式问答.md)
