@@ -27,26 +27,27 @@ Natural Language Processing with transformers.
 本项目总结和学习了多篇优秀文档和分享，在各个章节均有标注来源，如有侵权，请及时联系项目成员，谢谢。去[Github点完Star](https://github.com/datawhalechina/learn-nlp-with-transformers)再学习事半功倍哦😄，谢谢。
 
 # 项目内容
+
 ## 篇章1-前言
 * [1.0-本地阅读和代码运行环境配置.md](./篇章1-前言/1.0-本地阅读和代码运行环境配置.md)
 * [1.1-Transformers在NLP中的兴起](./篇章1-前言/1.1-Transformers在NLP中的兴起.md)
 
-## 篇章2-Transformer相关原理
+## [篇章2-Transformer相关原理](./篇章2-Transformer相关原理/2.0-前言.md)
 * [2.1-图解attention](./篇章2-Transformer相关原理/2.1-图解attention.md)
 * [2.2-图解transformer](./篇章2-Transformer相关原理/2.2-图解transformer.md)
 * [2.2.1-Pytorch编写Transformer.md](./篇章2-Transformer相关原理/2.2.1-Pytorch编写Transformer.md)
-* [2.2.2-Pytorch编写Transformer-选读.md](./篇章2-Transformer相关原理/2.2.1-Pytorch编写Transformer-选读.md)
+* [2.2.2-Pytorch编写Transformer-选读.md](./篇章2-Transformer相关原理/2.2.2-Pytorch编写Transformer-选读.md)
 * [2.3-图解BERT](./篇章2-Transformer相关原理/2.3-图解BERT.md)
 * [2.4-图解GPT](./篇章2-Transformer相关原理/2.4-图解GPT.md)
 * [2.5-篇章小测](./篇章2-Transformer相关原理/2.5-篇章小测.md)
 
-## 篇章3-编写一个Transformer模型：BERT
+## [篇章3-编写一个Transformer模型：BERT](./篇章3-编写一个Transformer模型：BERT/3.0-前言.md)
 * [3.1-如何实现一个BERT](./篇章3-编写一个Transformer模型：BERT/3.1-如何实现一个BERT.md)
 * [3.2-如何应用一个BERT](./篇章3-编写一个Transformer模型：BERT/3.2-如何应用一个BERT.md)
 * [3.3-篇章小测](./篇章3-编写一个Transformer模型：BERT/3.3-篇章小测.md)
 
-## 篇章4-使用Transformers解决NLP任务
-* [4.0-前言](./篇章4-使用Transformers解决NLP任务/4.0-前言.md)
+## [篇章4-使用Transformers解决NLP任务](./篇章4-使用Transformers解决NLP任务/4.0-前言.md)
+* [4.0-基于Hugging Face -Transformers的预训练模型微调.md](./篇章4-使用Transformers解决NLP任务/4.0-基于HuggingFace-Transformers的预训练模型微调.md)
 * [4.1-文本分类](./篇章4-使用Transformers解决NLP任务/4.1-文本分类.md)
 * [4.2-序列标注](./篇章4-使用Transformers解决NLP任务/4.2-序列标注.md)
 * [4.3-问答任务-抽取式问答](./篇章4-使用Transformers解决NLP任务/4.3-问答任务-抽取式问答.md)
